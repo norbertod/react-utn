@@ -52,20 +52,11 @@ export function HeroCard({ id, name, url, publisher }: any) {
             {id}
           </Avatar>
         }
-        // action={
-        //   <IconButton
-        //     onClick={() => alert("Funca Norber!")}
-        //     aria-label="settings"
-        //   >
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={name}
         subheader={publisher}
       />
       <CardMedia component="img" height="194" image={url} alt="No image" />
       <CardActions>
-        {/* <Button size="small">Mas...</Button> */}
         <Link to={`./hero/${id}`}>
           <Typography variant="subtitle1">Mas...</Typography>
         </Link>

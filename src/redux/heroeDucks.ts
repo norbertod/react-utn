@@ -94,11 +94,6 @@ export const obtenerHeroesAction = () => async (dispatch: any,getState: any) => 
 
     if(localStorage.getItem('begin=0')){
         console.log('From obtenerHeroeAction localstorage Home')
-        console.log('begin',begin)
-        console.log('take',take)
-        console.log('take + begin',(take + begin))
-        console.log('siguiente',next)
-        console.log('previous',previous)
         dispatch({
             type: GET_HEROES_SUCCESS,
             payload: {
@@ -112,11 +107,6 @@ export const obtenerHeroesAction = () => async (dispatch: any,getState: any) => 
 
     try {
         console.log('From obtenerHeroeAction try catch Home')
-        console.log('begin',begin)
-        console.log('take',take)
-        console.log('take + begin',(take + begin))
-        console.log('siguiente',next)
-        console.log('previous',previous)
 
         for (let i = 0; i < 20; i++) {
             resp.push(api.get(`${baseUrl}${i+1}`))  
