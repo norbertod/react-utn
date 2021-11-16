@@ -18,7 +18,7 @@ const GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS";
 const GET_LOGOUT_SUCCESS = "GET_LOGOUT_SUCCESS";
 const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
 const GET_ERRORS = "GET_ERRORS";
-
+//adsñlkfjadlskjfa
 // reducer
 // Reducer
 export default function heroeReducer(state = dataInicial, action: any) {

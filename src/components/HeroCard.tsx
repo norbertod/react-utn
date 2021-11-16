@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import {
   Avatar,
   CardHeader,
@@ -13,7 +14,8 @@ import {
   IconButton,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { red } from "@material-ui/core/colors";
+import { pink, red } from "@material-ui/core/colors";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -42,39 +44,36 @@ export function HeroCard({ id, name, url, publisher }: any) {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-      // <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-        <Card className={classes.root}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
-                {id}
-              </Avatar>
-            }
-            action={
-              <IconButton
-                onClick={() => alert("Funca Norber!")}
-                aria-label="settings"
-              >
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={name}
-            subheader={publisher}
-          />
-          <CardMedia component="img" height="194" image={url} alt="No image" />
-          {/* <CardContent>
-        <Typography color="textSecondary" gutterBottom>
-          {id}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {name}
-        </Typography>
-      </CardContent> */}
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      // </Grid>
-
+    // <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            {id}
+          </Avatar>
+        }
+        // action={
+        //   <IconButton
+        //     onClick={() => alert("Funca Norber!")}
+        //     aria-label="settings"
+        //   >
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
+        title={name}
+        subheader={publisher}
+      />
+      <CardMedia component="img" height="194" image={url} alt="No image" />
+      <CardActions>
+        {/* <Button size="small">Mas...</Button> */}
+        <Link to={`./hero/${id}`}>
+          <Typography variant="subtitle1">Mas...</Typography>
+        </Link>
+        <IconButton onClick={() => {}} aria-label="add to favorites">
+          <FavoriteIcon style={{ color: pink[500] }} />
+        </IconButton>
+      </CardActions>
+    </Card>
+    // </Grid>
   );
 }

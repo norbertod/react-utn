@@ -16,6 +16,7 @@ const dataInicial = {
 
 // types
 const GET_HEROE_SUCCESS = 'GET_HEROE_SUCCESS'
+const POKE_INFO_EXITO = 'POKE_INFO_EXITO'
 const GET_HEROES_SUCCESS = 'GET_HEROES_SUCCESS'
 const GET_HEROE_NEXT_SUCCESS = 'GET_HEROE_NEXT_SUCCESS'
 const GET_HEROE_PREV_SUCCESS = 'GET_HEROE_PREV_SUCCESS'
@@ -25,7 +26,9 @@ const GET_HEROE_PREV_SUCCESS = 'GET_HEROE_PREV_SUCCESS'
 export default function heroeReducer (state = dataInicial, action:any) {
     switch(action.type){
         case GET_HEROE_SUCCESS:
-            return {...state, array: action.payload.array, begin: action.payload.begin }
+            return {...state, array: action.payload.array }
+        case POKE_INFO_EXITO:
+            return {...state, hero: action.payload.hero }
         case GET_HEROES_SUCCESS:
             return {
                 ...state, 
@@ -52,6 +55,36 @@ export default function heroeReducer (state = dataInicial, action:any) {
 }
 
 // actions
+export const unHeroeDetalleAccion = (id: string) => async (dispatch: any,getState: any) => {
+
+    if(localStorage.getItem(`${baseUrl}${id}`)){
+
+        dispatch({
+            type: POKE_INFO_EXITO,
+            payload: JSON.parse(localStorage.getItem(`${baseUrl}${id}`) || '{}')
+        })
+        console.log('desde localstorage')
+
+        return
+    }
+
+    try {
+        console.log('desde api')
+       const res = await api.get(`${baseUrl}${id}`) 
+    //    console.log(res.data)
+       dispatch({
+           type: POKE_INFO_EXITO,
+           payload: {
+            hero : res.data
+           }
+       })
+       localStorage.setItem('url', JSON.stringify(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 export const obtenerHeroesAction = () => async (dispatch: any,getState: any) => {
 
     let listaHeroes: any[] = []
